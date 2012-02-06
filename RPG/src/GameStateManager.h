@@ -12,8 +12,8 @@
 GameState LoadGameState()
 {
 	/*TODO funkcja wczytania stanu gry
-	 * PóŸniej zwróci
-	 * A)Kilku wymiarow¹ tablicê reprezentuj¹c¹ stan gry
+	 * PÃ³Åºniej zwrÃ³ci
+	 * A)Kilku wymiarowÄ… tablicÄ™ reprezentujÄ…cÄ… stan gry
 	 * lub B)Obiekt klasy GameState
 	 */
 	return GameState();
@@ -22,7 +22,7 @@ GameState LoadGameState()
 bool SaveGameState()
 {
 	/*TODO funkcja zapisu stanu gry
-	 * Zwraca true gdy zapis pomyœlny
+	 * Zwraca true gdy zapis pomyÅ›lny
 	 */
 	return false;
 }

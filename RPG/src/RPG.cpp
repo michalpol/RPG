@@ -2,10 +2,10 @@
 // Name        : RPG.cpp
 // Author      : Michalpol
 // Version     : 1 (Kolejny numer edycji)
-// ConfVersion : 0 (Wersja konfiguracji gry - wersja pliku ustawieñ, mapy itd.)
+// ConfVersion : 0 (Wersja konfiguracji gry - wersja pliku ustawieÅ„, mapy itd.)
 // Meeting     : 0 (Kolejny numer Spotkania)
 // Copyright   : -
-// Description : G³ówna aplikacja gry - w¹tek steruj¹cy wyœwietlaniem
+// Description : GÅ‚Ã³wna aplikacja gry - wÄ…tek sterujÄ…cy wyÅ›wietlaniem
 //============================================================================
 
 //INCLUDES HERE
@@ -23,7 +23,7 @@ using namespace std;
 int main() {
 /*TODO Pusta metoda main
  *
- *Trzeba by coœ rozkodziæ
+ *Trzeba by coÅ› rozkodziÄ‡
  *
  */
 }

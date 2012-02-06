@@ -11,7 +11,7 @@
 void TickFight()
 {
 	/*TODO tick walki
-	 * tutaj obliczane s¹ parametry walki
+	 * tutaj obliczane sÄ… parametry walki
 	 */
 }
 
@@ -25,44 +25,44 @@ void TickMove()
 void TickItemPickup()
 {
 	/*TODO tick podnoszenia przedmiotu
-	 * tutaj obliczana jest zawartoœæ ekwipunku po podniesieniu przedmiotu
+	 * tutaj obliczana jest zawartoÅ›Ä‡ ekwipunku po podniesieniu przedmiotu
 	 */
 }
 
 void TickItemDrop()
 {
 	/*TODO tick upuszczenia przedmiotu
-	 * tutaj obliczana jest zawartoœæ ekwipunku po upuszczeniu przedmiotu
+	 * tutaj obliczana jest zawartoÅ›Ä‡ ekwipunku po upuszczeniu przedmiotu
      */
 }
 
 void TickQuestCalculateMain()
 {
-	/*TODO tick Przeliczenia questa g³ównego
-	 * Tutaj system oblicza % spe³nienia wymagañ questa i ewentualnie usuwa go
-	 * z listy i daje nagrody po zamkniêciu ci¹gu zadañ
+	/*TODO tick Przeliczenia questa gÅ‚Ã³wnego
+	 * Tutaj system oblicza % speÅ‚nienia wymagaÅ„ questa i ewentualnie usuwa go
+	 * z listy i daje nagrody po zamkniÄ™ciu ciÄ…gu zadaÅ„
 	 */
 }
 void TickQuestCalculateSide()
 {
 	/*TODO tick Przeliczenia questa pobocznego
-	 * Tutaj system oblicza % spe³nienia wymagañ questa i ewentualnie usuwa go
-	 * z listy i daje nagrody po zamkniêciu ci¹gu zadañ
+	 * Tutaj system oblicza % speÅ‚nienia wymagaÅ„ questa i ewentualnie usuwa go
+	 * z listy i daje nagrody po zamkniÄ™ciu ciÄ…gu zadaÅ„
 	 */
 }
 
 void TickMoveNPC()
 {
 	/*TODO tick ruchu NPC
-	 * tutaj dokonuje siê obliczeñ ruchu NPC i potworów, zwracana jest tablica
+	 * tutaj dokonuje siÄ™ obliczeÅ„ ruchu NPC i potworÃ³w, zwracana jest tablica
 	 * int[IDNPC]:X,Y o wymiarach maksymalnych 500x2
 	 */
 }
 
 void Tick()
 {
-	/*TODO Tick g³ówny, metoda wywo³ywana w momencie prawdziwego ticku (?)
-	 * Sterowanie tickami? mo¿e kolejnoœæ ³adowania.
+	/*TODO Tick gÅ‚Ã³wny, metoda wywoÅ‚ywana w momencie prawdziwego ticku (?)
+	 * Sterowanie tickami? moÅ¼e kolejnoÅ›Ä‡ Å‚adowania.
 	 */
 	TickFight();
 	TickMove();

@@ -11,20 +11,20 @@
 class GameState
 {
 	//POLA OBIEKTU
-	int  StateTimestamp; //TODO przyk³adowe pole
-	int  StateTick; //TODO przyk³adowe pole
+	int  StateTimestamp; //TODO przykÅ‚adowe pole
+	int  StateTick; //TODO przykÅ‚adowe pole
 	//METODY OBIEKTU
 	public:
 	GameState()
 	{
-		//TODO przyk³adowy konstruktor
+		//TODO przykÅ‚adowy konstruktor
 		this->StateTimestamp = 0;
 		this->StateTick      = 0;
 	}
 	public:
 	GameState(int StateTimestamp,int StateTick)
 	{
-		//TODO przyk³adowy konstruktor alternatywny
+		//TODO przykÅ‚adowy konstruktor alternatywny
 		this->StateTimestamp = StateTimestamp;
 		this->StateTick      = StateTick;
 	}
@@ -32,16 +32,16 @@ class GameState
 	bool ChangeSomething()
 	{
 		/*Metoda szablonowa do zmiany danej w obiekcie
-		 * zwraca true je¿eli sukces
+		 * zwraca true jeÅ¼eli sukces
 		 */
 		return false;
 	}
 	bool GetSomething()
 	{
 		/*Metoda szablonowa do wczytania danej z obiektu
-		 * zwraca wartoœæ (tutaj bool) jeœli obiekt takow¹ ma,
-		 * w przeciwnym wypadku powinno zwróciæ inn¹ stosown¹ wartoœæ
-		 * (CZYLI TAK¥ JAK W ŒWIE¯O ROZPOCZÊTEJ SESJI)
+		 * zwraca wartoÅ›Ä‡ (tutaj bool) jeÅ›li obiekt takowÄ… ma,
+		 * w przeciwnym wypadku powinno zwrÃ³ciÄ‡ innÄ… stosownÄ… wartoÅ›Ä‡
+		 * (CZYLI TAKÄ„ JAK W ÅšWIEÅ»O ROZPOCZÄ˜TEJ SESJI)
 		 */
 		return false;
 	}
