@@ -1,0 +1,17 @@
+#Mon Feb 06 16:48:52 CET 2012
+eclipse.preferences.version=1
+environment/project/org.eclipse.cdt.msvc.exe.debug.1861301515/PATH/delimiter=;
+environment/project/org.eclipse.cdt.msvc.exe.debug.1861301515/PATH/operation=append
+environment/project/org.eclipse.cdt.msvc.exe.debug.1861301515/PATH/value=D\:/MinGW/bin
+environment/project/org.eclipse.cdt.msvc.exe.debug.1861301515/append=true
+environment/project/org.eclipse.cdt.msvc.exe.debug.1861301515/appendContributed=true
+environment/project/org.eclipse.cdt.msvc.exe.release.1762940295/MINGW_HOME/delimiter=;
+environment/project/org.eclipse.cdt.msvc.exe.release.1762940295/MINGW_HOME/operation=append
+environment/project/org.eclipse.cdt.msvc.exe.release.1762940295/MINGW_HOME/value=D\:\\MinGW
+environment/project/org.eclipse.cdt.msvc.exe.release.1762940295/append=true
+environment/project/org.eclipse.cdt.msvc.exe.release.1762940295/appendContributed=true
+environment/project/org.eclipse.cdt.msvc.exe.release.759679595/PATH/delimiter=;
+environment/project/org.eclipse.cdt.msvc.exe.release.759679595/PATH/operation=replace
+environment/project/org.eclipse.cdt.msvc.exe.release.759679595/PATH/value=D\:/MinGW/bin
+environment/project/org.eclipse.cdt.msvc.exe.release.759679595/append=true
+environment/project/org.eclipse.cdt.msvc.exe.release.759679595/appendContributed=true
