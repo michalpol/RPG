@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : RPG.cpp
 // Author      : Michalpol
-// Version     : 0 (Kolejny numer edycji)
+// Version     : 1 (Kolejny numer edycji)
 // ConfVersion : 0 (Wersja konfiguracji gry - wersja pliku ustawieñ, mapy itd.)
 // Meeting     : 0 (Kolejny numer Spotkania)
 // Copyright   : -
@@ -11,6 +11,8 @@
 //INCLUDES HERE
 #include <iostream>
 #include <cstdlib>
+#include "TickManager.h"
+#include "GameStateManager.h"
 
 //NAMESPACES HERE
 using namespace std;
