@@ -9,7 +9,7 @@
 #define GAMESTATEMANAGER_H_
 #include "GameState.h"
 
-GameState LoadGameState()
+GameState LoadGameState(string path)
 {
 	/*TODO funkcja wczytania stanu gry
 	 * Później zwróci
@@ -19,7 +19,7 @@ GameState LoadGameState()
 	return GameState();
 }
 
-bool SaveGameState()
+bool SaveGameState(GameState gs, string path)
 {
 	/*TODO funkcja zapisu stanu gry
 	 * Zwraca true gdy zapis pomyślny

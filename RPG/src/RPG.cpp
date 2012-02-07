@@ -1,9 +1,9 @@
 //============================================================================
 // Name        : RPG.cpp
-// Author      : Michalpol
+// Author      : Michalpol, Bleake, NaNO3
 // Version     : 1 (Kolejny numer edycji)
 // ConfVersion : 0 (Wersja konfiguracji gry - wersja pliku ustawień, mapy itd.)
-// Meeting     : 0 (Kolejny numer Spotkania)
+// Meeting     : 1 (Kolejny numer Spotkania)
 // Copyright   : -
 // Description : Główna aplikacja gry - wątek sterujący wyświetlaniem
 //============================================================================
@@ -13,6 +13,10 @@
 #include <cstdlib>
 #include "TickManager.h"
 #include "GameStateManager.h"
+#include "Display.h"
+#include "SpellEffect.h"
+#include "Item.h"
+#include "Quest.h"
 
 //NAMESPACES HERE
 using namespace std;
@@ -26,4 +30,7 @@ int main() {
  *Trzeba by coś rozkodzić
  *
  */
+	GameState gs = GameState();
+	DrawSideBarBasic(gs);
+	system("pause");
 }
