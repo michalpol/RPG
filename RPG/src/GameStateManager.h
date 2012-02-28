@@ -8,23 +8,33 @@
 #ifndef GAMESTATEMANAGER_H_
 #define GAMESTATEMANAGER_H_
 #include "GameState.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
-GameState LoadGameState(string path)
+GameState NewGameState()
 {
-	/*TODO funkcja wczytania stanu gry
-	 * Później zwróci
-	 * A)Kilku wymiarową tablicę reprezentującą stan gry
-	 * lub B)Obiekt klasy GameState
-	 */
 	return GameState();
 }
 
-bool SaveGameState(GameState gs, string path)
+GameState LoadGameState(char* path)
 {
-	/*TODO funkcja zapisu stanu gry
-	 * Zwraca true gdy zapis pomyślny
-	 */
-	return false;
+	GameState gs =GameState();
+	ifstream ifs;
+	ifs.open(path,ios::binary);
+	ifs.seekg(0,ios::beg);
+	ifs.read((char*)&gs,sizeof(gs));
+	return gs;
+}
+
+bool SaveGameState(GameState gs, char* path)
+{
+	ofstream ofs;
+	ofs.open(path,ios::binary);
+	ofs.seekp(0,ios::beg);
+	ofs.write((char*)&gs,sizeof(gs));
+	ofs.close();
+	return true;
 }
 
 #endif /* GAMESTATEMANAGER_H_ */

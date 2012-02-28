@@ -7,6 +7,13 @@
 
 #ifndef TICKMANAGER_H_
 #define TICKMANAGER_H_
+#include <windows.h>
+#include <cstdio>
+#include "GameState.h"
+#include "SpellEffect.h"
+using namespace std;
+typedef string String;
+
 
 void TickFight()
 {
@@ -59,18 +66,66 @@ void TickMoveNPC()
 	 */
 }
 
-void Tick()
+void TickCastSpell()
 {
-	/*TODO Tick główny, metoda wywoływana w momencie prawdziwego ticku (?)
-	 * Sterowanie tickami? może kolejność ładowania.
+	/*TODO Tick rzucania zaklęcia
+	 *
 	 */
-	TickFight();
+}
+
+void TickSpellEffectEffect(byte target,GameState gs)
+{
+	switch(target)
+	{
+		case 0:
+			for (unsigned short i=0;i<sizeof(gs.SpellEffects);i++){
+			short Effect = gs.SpellEffects[i];
+			SpellEffect dictionary;
+			if(dictionary.IsSpellEffect(Effect))
+			{
+				const short pwra = dictionary.Getpower(Effect);
+				const string atra=dictionary.Getattrib(Effect);
+				short pwr=pwra;
+				string atr=atra;
+				byte aaa=0;
+		if(atr=="Str"){aaa=0;}
+		if(atr== "Agi"){aaa=1;}
+		if(atr== "Con"){aaa=2;}
+		if(atr== "Pow"){aaa=3;}
+		if(atr== "Int"){aaa=4;}
+		if(atr== "Cha"){aaa=5;}
+		if(atr== "HP"){aaa=6;}
+		if(atr== "MP"){aaa=7;}
+		if(atr== "lvl"){aaa=8;}
+				gs.Affect(aaa,pwr);
+			}
+
+
+		}break;//player
+		default: break;
+	}
+}
+
+void Tick(GameState gs,bool CastSpellTick)
+{
+
+	if(CastSpellTick){
+	TickCastSpell();}else{
+	TickFight();}
+
+
+	//TODO
+	TickSpellEffectEffect(0,gs);
 	TickMove();
 	TickItemPickup();
 	TickItemDrop();
 	TickQuestCalculateMain();
 	TickQuestCalculateSide();
 	TickMoveNPC();
+
+
+	gs.SetStateTick(gs.GetStateTick()+1);
+	gs.SetStateTimestamp(time(NULL));
 }
 
 #endif /* TICKMANAGER_H_ */

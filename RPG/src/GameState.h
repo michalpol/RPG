@@ -16,6 +16,7 @@ using namespace std;
 typedef unsigned char byte;
 time_t timestamper;
 const int LvlUpFreeATP = 1;//Stała ilość punktów atrybutów na poziom
+const byte MaxLevel = 99;
 class GameState
 {
 	//POLA OBIEKTU
@@ -25,12 +26,14 @@ class GameState
 	//GameStatePlayerBasic
 	string Name;
 	short HP;
+	short MaxHP;
 	short MP;
+	short MaxMP;
 	int XP;
 	int GP;
 	byte lvl;
 	short InvContents[50][3];//[0] - ID itemu [1]-ilość [2]- uszkodzenie
-	short SpellEffects[50];
+public:	short SpellEffects[50];
 	//short Hunger; Atrybut do rozważenia
 	//short Age;Atrybut do rozważenia
 	//GameStatePlayerAttributes
@@ -46,79 +49,54 @@ class GameState
 	byte SideQuest;//Id questa pobocznego
 	//GameWorld
 	GameMap WMap;
-	short NPCs[1][3];//[0] - X [1] - Y [2] - ID NPC
+	short NPCs[1][4];//[0] - X [1] - Y [2] - ID NPC [3] - HP
 	//METODY OBIEKTU
 	public:
 	GameState();
-
     short GetAgi() const;
     short GetCha() const;
     short GetCon() const;
-    short GetFreeAtp() const;
-    int GetGp() const;
-    short GetHp() const;
+    int GetGP() const;
+    short GetHP() const;
     short GetInt() const;
-    byte GetLvl() const;
+    short GetMP() const;
     byte GetMainQuest() const;
     GameMap GetMap() const;
-    short GetMp() const;
     string GetName() const;
-    short GetNpCs() const;
     short GetPow() const;
     byte GetSideQuest() const;
     int GetStateTick() const;
     int GetStateTimestamp() const;
     short GetStr() const;
-    int GetXp() const;
+    int GetXP() const;
+    short GetfreeATP() const;
+    byte Getlvl() const;
     void SetAgi(short  Agi);
     void SetCha(short  Cha);
     void SetCon(short  Con);
-    void SetFreeAtp(short  FreeAtp);
-    void SetGp(int Gp);
-    void SetHp(short  Hp);
+    void SetGP(int Gp);
+    void SetHP(short  Hp);
     void SetInt(short  Int);
-    void SetLvl(byte Lvl);
+    void SetMP(short  Mp);
     void SetMainQuest(byte MainQuest);
     void SetMap(GameMap Map);
-    void SetMp(short  Mp);
     void SetName(string Name);
     void SetPow(short  Pow);
     void SetSideQuest(byte SideQuest);
     void SetStateTick(int StateTick);
     void SetStateTimestamp(int StateTimestamp);
     void SetStr(short  Str);
-    void SetXp(int Xp);
+    void SetXP(int Xp);
+    void SetfreeATP(short  FreeAtp);
+    void Setlvl(byte Lvl);
+    bool LevelUp();
+    bool SkillUpgrade(int SkillCode);
+    void UpdateHPMP();
+    bool Damage(int dmg);
+    void Heal(int hp);
+    void Affect(byte atr,short pwr);
 };
 
-GameState::GameState()
-{
-	this->StateTimestamp    = time(NULL);
-	srand(this->StateTimestamp);//Inicjalizacja generatora randomizacji seedem równym StateTimestamp
-	this->StateTick         = 0;
-	this->Name              = "Player";
-	this->Str               = rand() % 16 + 3;
-	this->Agi               = rand() % 16 + 3;
-	this->Con               = rand() % 16 + 3;
-	this->Int               = rand() % 16 + 3;
-	this->Pow               = rand() % 16 + 3;
-	this->Cha               = rand() % 16 + 3;
-	this->HP                = this->Con*10;
-	this->MP                = this->Int*10;
-	this->XP                = 0;
-	this->GP                = rand() % 100;
-	this->lvl               = 1;
-	this->InvContents[0][0] = 0;
-	this->InvContents[0][1] = 0;
-	this->InvContents[0][2] = 0;
-	this->SpellEffects[0]   = 0;
-	this->freeATP           = 0;
-	this->MainQuest         = 0;//Id questa głównego
-	this->SideQuest         = 0;//Id questa pobocznego
-	this->WMap              = GameMap();
-	this->NPCs[0][0]        = 0;
-	this->NPCs[0][1]        = 0;
-	this->NPCs[0][2]        = 0;
-}
 short GameState::GetAgi() const
 {
     return Agi;
@@ -134,17 +112,12 @@ short GameState::GetCon() const
     return Con;
 }
 
-short GameState::GetFreeAtp() const
-{
-    return freeATP;
-}
-
-int GameState::GetGp() const
+int GameState::GetGP() const
 {
     return GP;
 }
 
-short GameState::GetHp() const
+short GameState::GetHP() const
 {
     return HP;
 }
@@ -154,9 +127,9 @@ short GameState::GetInt() const
     return Int;
 }
 
-byte GameState::GetLvl() const
+short GameState::GetMP() const
 {
-    return lvl;
+    return MP;
 }
 
 byte GameState::GetMainQuest() const
@@ -167,11 +140,6 @@ byte GameState::GetMainQuest() const
 GameMap GameState::GetMap() const
 {
     return WMap;
-}
-
-short GameState::GetMp() const
-{
-    return MP;
 }
 
 string GameState::GetName() const
@@ -204,9 +172,19 @@ short GameState::GetStr() const
     return Str;
 }
 
-int GameState::GetXp() const
+int GameState::GetXP() const
 {
     return XP;
+}
+
+short GameState::GetfreeATP() const
+{
+    return freeATP;
+}
+
+byte GameState::Getlvl() const
+{
+    return lvl;
 }
 
 void GameState::SetAgi(short  Agi)
@@ -224,17 +202,12 @@ void GameState::SetCon(short  Con)
     this->Con = Con;
 }
 
-void GameState::SetFreeAtp(short  FreeAtp)
-{
-    freeATP = FreeAtp;
-}
-
-void GameState::SetGp(int Gp)
+void GameState::SetGP(int Gp)
 {
     GP = Gp;
 }
 
-void GameState::SetHp(short  Hp)
+void GameState::SetHP(short  Hp)
 {
     HP = Hp;
 }
@@ -245,9 +218,9 @@ void GameState::SetInt(short  Int)
 }
 
 
-void GameState::SetLvl(byte Lvl)
+void GameState::SetMP(short  Mp)
 {
-    lvl = Lvl;
+    MP = Mp;
 }
 
 void GameState::SetMainQuest(byte MainQuest)
@@ -260,16 +233,11 @@ void GameState::SetMap(GameMap Map)
     WMap = Map;
 }
 
-void GameState::SetMp(short  Mp)
-{
-    MP = Mp;
-}
 
 void GameState::SetName(string Name)
 {
     this->Name = Name;
 }
-
 
 void GameState::SetPow(short  Pow)
 {
@@ -297,12 +265,142 @@ void GameState::SetStr(short  Str)
     this->Str = Str;
 }
 
-void GameState::SetXp(int Xp)
+void GameState::SetXP(int Xp)
 {
     XP = Xp;
 }
 
+void GameState::SetfreeATP(short  FreeAtp)
+{
+    freeATP = FreeAtp;
+}
 
+void GameState::Setlvl(byte Lvl)
+{
+    lvl = Lvl;
+}
 
+bool GameState::LevelUp()
+{
+	if(lvl<MaxLevel)
+	{
+		freeATP += LvlUpFreeATP;
+		UpdateHPMP();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 
+}
+
+bool GameState::SkillUpgrade(int SkillCode)
+{
+	if(freeATP>=1)
+	{
+	switch(SkillCode)
+	{
+		case 0:
+			Str+=1;
+			freeATP-=1;
+			break;
+		case 1:
+			Agi+=1;
+			freeATP-=1;
+			break;
+		case 2:
+			Con+=1;
+			freeATP-=1;
+			break;
+		case 3:
+			Int+=1;
+			freeATP-=1;
+			break;
+		case 4:
+			Pow+=1;
+			freeATP-=1;
+			break;
+		case 5:
+			Cha+=1;
+			freeATP-=1;
+			break;
+	}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+void GameState::UpdateHPMP()
+{
+	HP=Con*10;
+	MP=Int*10;
+}
+bool GameState::Damage(int dmg)
+{
+	HP-=dmg;
+	if(HP>0)
+	{
+		return true;
+	}
+	else
+	{
+		return false; //jeżeli śmiertelne zwróć false
+	}
+}
+void GameState::Heal(int hp)
+{
+	HP+=hp;
+	if(HP>MaxHP){HP=MaxHP;}
+}
+GameState::GameState()
+{
+	int a = time(NULL);
+	srand(a);//Inicjalizacja generatora randomizacji seedem równym StateTimestamp
+	this->StateTimestamp    = a;
+	this->StateTick         = 0;
+	this->Name              = "Player";
+	this->Str               = rand() % 16 + 3;
+	this->Agi               = rand() % 16 + 3;
+	this->Con               = rand() % 16 + 3;
+	this->Int               = rand() % 16 + 3;
+	this->Pow               = rand() % 16 + 3;
+	this->Cha               = rand() % 16 + 3;
+	this->HP                = this->Con*10;
+	this->MP                = this->Int*10;
+	this->MaxHP             = this->Con*10;
+	this->MaxMP             = this->Int*10;
+	this->XP                = 0;
+	this->GP                = rand() % 100 +1;
+	this->lvl               = 1;
+	this->InvContents[0][0] = 0;
+	this->InvContents[0][1] = 0;
+	this->InvContents[0][2] = 0;
+	this->SpellEffects[0]   = 0;
+	this->freeATP           = 0;
+	this->MainQuest         = 0;//Id questa głównego
+	this->SideQuest         = 0;//Id questa pobocznego
+	this->WMap              = GameMap();
+	this->NPCs[0][0]        = 0;
+	this->NPCs[0][1]        = 0;
+	this->NPCs[0][2]        = 0;
+	this->NPCs[0][3]        = 0;
+}
+void GameState::Affect(byte atr, short pwr)
+{
+	switch(atr)
+	{
+		case 0: Str+=pwr; break;
+		case 1: Agi+=pwr; break;
+		case 2: Con+=pwr; break;
+		case 3: Pow+=pwr; break;
+		case 4: Int+=pwr; break;
+		case 5: Cha+=pwr; break;
+		case 6:  HP+=pwr; break;
+		case 7:  MP+=pwr; break;
+		case 8: lvl+=pwr; break;
+	}
+}
 #endif /* GAMESTATE_H_ */
