@@ -27,6 +27,7 @@ string Bar(byte percent)
 {
 	byte i =0;
 	string a="[";
+	if(percent>100){a="ERR: >100%"; return a;}
 	while (i<(percent/5))
 	{
 		a+="#";
@@ -51,40 +52,23 @@ void DrawSideBarBasic(GameState gs)
 {
 	srand(gs.GetStateTimestamp());
 	//TODO dummy
-	gotoxy(0,0);
-	printf("Str: %i\n",gs.GetStr());
-	gotoxy(0,1);
-	string a = Bar((gs.GetStr()*100)/18);
-	cout<<a;
-	gotoxy(0,2);
-	printf("Agi: %i\n",gs.GetAgi());
-	gotoxy(0,3);
-	a = Bar((gs.GetAgi()*100)/18);
-	cout<<a;
-	gotoxy(0,4);
-	printf("Con: %i\n",gs.GetCon());
-	gotoxy(0,5);
-	a = Bar((gs.GetCon()*100)/18);
-	cout<<a;
-	gotoxy(0,6);
-	printf("Int: %i\n",gs.GetInt());
-	gotoxy(0,7);
-	a = Bar((gs.GetInt()*100)/18);
-	cout<<a;
-	gotoxy(0,8);
-	printf("Pow: %i\n",gs.GetPow());
-	gotoxy(0,9);
-	a = Bar((gs.GetPow()*100)/18);
-	cout<<a;
-	gotoxy(0,10);
-	printf("Cha: %i\n",gs.GetCha());
-	gotoxy(0,11);
-	a = Bar((gs.GetCha()*100)/18);
-	cout<<a;
-	gotoxy(0,12);
-	printf("Random: %i\n",rand());
-	gotoxy(0,13);
-	printf("Seed: %i\n",gs.GetStateTimestamp());
+	//gotoxy(0,0);
+	printf("HP: %i/%i\n",gs.GetHP(),gs.GetMaxHP());
+	//gotoxy(0,1);
+	string a = Bar((gs.GetHP()*100)/gs.GetMaxHP());
+	cout<<a<<endl;
+	//gotoxy(0,2);
+	printf("MP: %i/%i\n",gs.GetMP(),gs.GetMaxMP());
+	//gotoxy(0,3);
+	a = Bar((gs.GetMP()*100)/gs.GetMaxMP());
+	cout<<a<<endl;
+	//gotoxy(0,4);
+	cout<<"Str: "<<gs.GetStr()<<endl;
+	cout<<"Agi: "<<gs.GetAgi()<<endl;
+	cout<<"Int: "<<gs.GetInt()<<endl;
+	cout<<"Pow: "<<gs.GetPow()<<endl;
+	cout<<"Con: "<<gs.GetCon()<<endl;
+	cout<<"Cha: "<<gs.GetCha()<<endl;
 }
 void DrawSideBarAttributes(GameState gs)
 {

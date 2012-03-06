@@ -16,6 +16,9 @@ using namespace std;
 typedef unsigned char byte;
 time_t timestamper;
 const int LvlUpFreeATP = 1;//Stała ilość punktów atrybutów na poziom
+const byte MinAttrib =  3;
+const byte MaxAttrib = 18;
+const byte attr = MaxAttrib-MinAttrib+1;
 const byte MaxLevel = 99;
 class GameState
 {
@@ -52,7 +55,7 @@ public:	short SpellEffects[50];
 	short NPCs[1][4];//[0] - X [1] - Y [2] - ID NPC [3] - HP
 	//METODY OBIEKTU
 	public:
-	GameState();
+	GameState(int seed);
     short GetAgi() const;
     short GetCha() const;
     short GetCon() const;
@@ -95,6 +98,8 @@ public:	short SpellEffects[50];
     bool Damage(int dmg);
     void Heal(int hp);
     void Affect(byte atr,short pwr);
+    short GetMaxMP();
+    short GetMaxHP();
 };
 
 short GameState::GetAgi() const
@@ -355,19 +360,25 @@ void GameState::Heal(int hp)
 	HP+=hp;
 	if(HP>MaxHP){HP=MaxHP;}
 }
-GameState::GameState()
+GameState::GameState(int seed)
 {
 	int a = time(NULL);
-	srand(a);//Inicjalizacja generatora randomizacji seedem równym StateTimestamp
+	srand(seed);//Inicjalizacja generatora randomizacji seedem równym StateTimestamp
 	this->StateTimestamp    = a;
 	this->StateTick         = 0;
 	this->Name              = "Player";
-	this->Str               = rand() % 16 + 3;
-	this->Agi               = rand() % 16 + 3;
-	this->Con               = rand() % 16 + 3;
-	this->Int               = rand() % 16 + 3;
-	this->Pow               = rand() % 16 + 3;
-	this->Cha               = rand() % 16 + 3;
+	srand( a % (rand() % 8564) );
+	this->Str               = rand() % attr + MinAttrib;
+	srand( a % (rand() % 1354) );
+	this->Agi               = rand() % attr + MinAttrib;
+	srand( a % (rand() % 4284) );
+	this->Con               = rand() % attr + MinAttrib;
+	srand( a % (rand() % 2088) );
+	this->Int               = rand() % attr + MinAttrib;
+	srand( a % (rand() % 5879) );
+	this->Pow               = rand() % attr + MinAttrib;
+	srand( a % (rand() % 6842) );
+	this->Cha               = rand() % attr + MinAttrib;
 	this->HP                = this->Con*10;
 	this->MP                = this->Int*10;
 	this->MaxHP             = this->Con*10;
@@ -403,4 +414,16 @@ void GameState::Affect(byte atr, short pwr)
 		case 8: lvl+=pwr; break;
 	}
 }
+
+short GameState::GetMaxMP()
+{
+	return MaxMP;
+}
+
+short GameState::GetMaxHP()
+{
+	return MaxHP;
+}
+
+
 #endif /* GAMESTATE_H_ */

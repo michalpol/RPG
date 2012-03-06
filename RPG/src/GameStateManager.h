@@ -14,12 +14,12 @@ using namespace std;
 
 GameState NewGameState()
 {
-	return GameState();
+	return GameState(0);
 }
 
 GameState LoadGameState(char* path)
 {
-	GameState gs =GameState();
+	GameState gs =GameState(0);
 	ifstream ifs;
 	ifs.open(path,ios::binary);
 	ifs.seekg(0,ios::beg);

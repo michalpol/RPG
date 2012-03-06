@@ -38,7 +38,7 @@ public:
 
 };
 //CRASH Undefined reference, WTF!?
-const string SpellEffect::Getattrib(int id)
+/*const string SpellEffect::Getattrib(int id)
 {
     return attrib[id];
 }
@@ -52,7 +52,7 @@ const short SpellEffect::Getpower(int id)
 {
     return power[id];
 }
-
+*/
 
 
 

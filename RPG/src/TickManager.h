@@ -75,7 +75,7 @@ void TickCastSpell()
 
 void TickSpellEffectEffect(byte target,GameState gs)
 {
-	switch(target)
+/*	switch(target)
 	{
 		case 0:
 			for (unsigned short i=0;i<sizeof(gs.SpellEffects);i++){
@@ -103,7 +103,7 @@ void TickSpellEffectEffect(byte target,GameState gs)
 
 		}break;//player
 		default: break;
-	}
+	}*/
 }
 
 void Tick(GameState gs,bool CastSpellTick)
