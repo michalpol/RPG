@@ -1,8 +1,5 @@
 package org.TI2.game.RPG;
 
-import java.lang.*;
-import java.lang.reflect.Array;
-
 
 public class GameMap {
 	
@@ -93,6 +90,14 @@ public class GameMap {
 	}
 	public void setGameObjects(short[][] gameObjects) {
 		GameObjects = gameObjects;
+	}
+
+	public void setObj(Object obj[]) {
+		Obj = obj;
+	}
+
+	public Object[] getObj() {
+		return Obj;
 	}
 	
 	

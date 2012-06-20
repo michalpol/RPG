@@ -31,7 +31,7 @@ public class GamePlayer {
 	//GameStatePlayerQuestState
 	byte MainQuest;//Id questa g³ównego
 	byte SideQuest;//Id questa pobocznego
-	double MvmtSpd=1.000;
+	double MvmtSpd=1.000;//Prêdkoœæ w ruchach na turê
 	public String getName() {
 		return Name;
 	}
